@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import { StepperContext } from "../Contexts/StepperContext";
 import validationSchemas from "../Validations/Schemas/steppervalidSchema";
+import Overlay from "./Loaders/overlay";
 
 const CheckoutStepper = ({ steps }) => {
-  const { data, setErrors, currStep, setCurrStep } = useContext(StepperContext);
+  const { data, setData, setErrors, currStep, setCurrStep } = useContext(StepperContext);
   const [isComplete, setIsComplete] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const handleNext = () => {
     let filteredData = {};
@@ -49,15 +51,19 @@ const CheckoutStepper = ({ steps }) => {
       }
     }
 
-    setCurrStep((prev) => {
-      if (prev === steps.length) {
-        setIsComplete(true);
-        return prev;
-      } else {
+    if (currStep === steps.length) {
+      setShowOverlay(true);
+
+      setTimeout(() => {
+        setData({});
         setErrors({});
-        return prev + 1;
-      }
-    });
+        setCurrStep(1);
+        setShowOverlay(false);
+      }, 3000);
+    } else {
+      setErrors({});
+      setCurrStep((prev) => prev + 1);
+    }
   };
 
   const handleBack = () => {
@@ -68,6 +74,8 @@ const CheckoutStepper = ({ steps }) => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-200 p-3">
+      <Overlay show={showOverlay} />
+
       <div className="w-full max-w-4xl bg-white my-3 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
         <div className="hidden md:flex items-center justify-center w-full py-3 mb-6">
           <div className="flex items-center justify-between w-full max-w-3xl">
@@ -134,10 +142,8 @@ const CheckoutStepper = ({ steps }) => {
             ) : (
               <>
                 <span className="inline md:hidden">Continue</span>{" "}
-                {/* Mobile text */}
                 <span className="hidden md:inline">
                   Next <span className="hidden md:inline">&#x2192;</span>{" "}
-                  {/* Desktop text with arrow */}
                 </span>
               </>
             )}
