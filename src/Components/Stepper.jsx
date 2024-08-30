@@ -122,12 +122,11 @@ const CheckoutStepper = ({ steps }) => {
             )}
           </div>
         </div>
-
         <div className="flex flex-col md:flex-row justify-between md:items-center space-y-3 md:space-y-0">
           {currStep > 1 && (
             <button
               onClick={handleBack}
-              className="bg-gray-500 hover:bg-gray-600 md:bg-black md:hover:bg-gray-800 rounded-md px-3 py-2 md:px-5 md:py-2 text-white w-full md:w-auto"
+              className="bg-gray-300 hover:bg-gray-600 md:bg-black md:hover:bg-gray-800 rounded-md px-3 py-2 md:px-5 md:py-2 text-white w-full md:w-auto"
               disabled={currStep === 1}
             >
               <span className="hidden md:inline">&#8592;</span> Back
