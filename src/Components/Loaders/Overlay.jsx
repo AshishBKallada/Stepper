@@ -19,6 +19,7 @@ const Overlay = ({ show }) => {
             />
           </div>
         </div>
+        
         <div className="p-6 space-y-4">
           <div className="space-y-2 text-center">
             <CircleCheckIcon className="w-12 h-12 mx-auto text-green-500" />
