@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { StepperContext } from "../Contexts/StepperContext";
 import validationSchemas from "../Validations/Schemas/steppervalidSchema";
-import Overlay from "./Loaders/overlay";
+import Overlay from "./Loaders/overlaymodal";
 
 const CheckoutStepper = ({ steps }) => {
   const { data, setData, setErrors, currStep, setCurrStep } = useContext(StepperContext);
