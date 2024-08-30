@@ -4,8 +4,8 @@ import validationSchemas from "../Validations/Schemas/steppervalidSchema";
 import Overlay from "./Loaders/overlaymodal";
 
 const CheckoutStepper = ({ steps }) => {
-  const { data, setData, setErrors, currStep, setCurrStep } = useContext(StepperContext);
-  const [isComplete, setIsComplete] = useState(false);
+  const { data, setData, setErrors, currStep, setCurrStep } =
+    useContext(StepperContext);
   const [showOverlay, setShowOverlay] = useState(false);
 
   const handleNext = () => {
@@ -38,6 +38,7 @@ const CheckoutStepper = ({ steps }) => {
         filteredData = {};
     }
 
+    // Validate data based on the current step's schema
     const schema = validationSchemas[currStep];
     if (schema) {
       const { error } = schema.validate(filteredData, { abortEarly: false });
@@ -50,7 +51,7 @@ const CheckoutStepper = ({ steps }) => {
         return;
       }
     }
-
+    //if the user is on the last page/step upon click, show overlay and forward to step 1 after form is cleared
     if (currStep === steps.length) {
       setShowOverlay(true);
 
@@ -70,6 +71,7 @@ const CheckoutStepper = ({ steps }) => {
     setCurrStep((prev) => prev - 1);
   };
 
+  // Determine which component to render based on the current step
   const ActiveComponent = steps[currStep - 1]?.Component;
 
   return (

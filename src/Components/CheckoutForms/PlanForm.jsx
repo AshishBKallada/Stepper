@@ -3,18 +3,14 @@ import { StepperContext } from "../../Contexts/StepperContext";
 import useFieldValidation from "../../Validations/Helpers/Formvalidator";
 
 const PlanForm = () => {
-  const { validateField } = useFieldValidation();
-
+  const { validateField } = useFieldValidation(); //calling customHook
   const { data, setData, errors } = useContext(StepperContext);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setData({ ...data, [id]: value });
-
     validateField(id, value);
   };
-
-
 
   return (
     <div className="w-full max-w-5xl mx-auto bg-white border-2 border-gray-150 rounded-lg p-10">
@@ -25,7 +21,6 @@ const PlanForm = () => {
         </p>
       </div>
       <div className="space-y-8">
-
         <div className="space-y-2">
           <label
             htmlFor="planName"
@@ -45,7 +40,7 @@ const PlanForm = () => {
             <p className="text-red-500 text-sm">{errors.planName}</p>
           )}
         </div>
-        
+
         <div className="space-y-2">
           <label
             htmlFor="startDate"
