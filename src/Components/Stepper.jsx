@@ -75,8 +75,8 @@ const CheckoutStepper = ({ steps }) => {
   const ActiveComponent = steps[currStep - 1]?.Component;
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-200 p-3">
-      <Overlay show={showOverlay} />
+<div className="flex flex-col items-center min-h-screen bg-gradient-to-t from-black to-gray-800 p-3">
+<Overlay show={showOverlay} />
 
       <div className="w-full max-w-4xl bg-white my-3 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
         <div className="hidden md:flex items-center justify-center w-full py-3 mb-6">
